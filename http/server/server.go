@@ -1,5 +1,16 @@
 package server
 
+import (
+	"context"
+	"fmt"
+	"game/http/server/handler"
+	"game/internal/service"
+	"net/http"
+	"time"
+
+	"go.uber.org/zap"
+)
+
 // маршрутизация
 func new(ctx context.Context,
 	logger *zap.Logger,
@@ -25,7 +36,7 @@ func Run(
 	if err != nil {
 		return nil, err
 	}
-	
+
 	muxHandler, err := new(ctx, logger, *lifeService)
 	if err != nil {
 		return nil, err

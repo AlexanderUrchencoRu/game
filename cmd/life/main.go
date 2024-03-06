@@ -1,5 +1,11 @@
 package life
 
+import (
+	"context"
+	"os"
+	"game/internal/application"
+)
+
 func main() {
 	ctx := context.Background()
 	// Exit приводит к завершению программы с заданным кодом.

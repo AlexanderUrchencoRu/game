@@ -1,5 +1,11 @@
 package service
 
+import (
+	"game/pkg/life"
+	"math/rand"
+	"time"
+)
+
 type LifeService struct {
 	currentWorld *life.World
 	nextWorld    *life.World
@@ -8,14 +14,11 @@ type LifeService struct {
 func New(height, width int) (*LifeService, error) {
 	rand.NewSource(time.Now().UTC().UnixNano())
 
-	currentWorld, err := life.NewWorld(height, width)
-	if err != nil {
-		return nil, err
-	}
-	// для упрощения примера хаотично заполним 
+	currentWorld := life.NewWorld(height, width)
+	// для упрощения примера хаотично заполним
 	currentWorld.RandInit(40)
 
-	newWorld, err := life.NewWorld(height, width)
+	newWorld := life.NewWorld(height, width)
 	if err != nil {
 		return nil, err
 	}
@@ -27,6 +30,7 @@ func New(height, width int) (*LifeService, error) {
 
 	return &ls, nil
 }
+
 // получение очередного состояния игры
 func (ls *LifeService) NewState() *life.World {
 	life.NextState(ls.currentWorld, ls.nextWorld)

@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 type World struct {
@@ -179,7 +178,7 @@ func NewWorld(height, width int) *World {
 	}
 }
 
-// Start
+/* Start
 func GoLife(height int, width int) {
 	// объект для хранения текущего состояния сетки
 	currentWorld := NewWorld(height, width)
@@ -200,3 +199,4 @@ func GoLife(height int, width int) {
 		fmt.Print("\033[H\033[2J")
 	}
 }
+*/

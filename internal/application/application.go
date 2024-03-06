@@ -1,5 +1,16 @@
 package application
 
+import (
+	"context"
+	"fmt"
+	"game/http/server"
+	"os"
+	"os/signal"
+
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+)
+
 type Config struct {
 	Width  int
 	Height int

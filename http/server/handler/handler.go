@@ -1,7 +1,15 @@
 package handler
 
+import (
+	"context"
+	"encoding/json"
+	"game/internal/service"
+	"net/http"
+)
+
 // создадим новый тип для добавления middleware к обработчикам
 type Decorator func(http.Handler) http.Handler
+
 // объект для хранения состояния игры
 type LifeStates struct {
 	service.LifeService
@@ -20,6 +28,7 @@ func New(ctx context.Context,
 
 	return serveMux, nil
 }
+
 // функция добавления middleware
 func Decorate(next http.Handler, ds ...Decorator) http.Handler {
 	decorated := next
