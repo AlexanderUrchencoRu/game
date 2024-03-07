@@ -14,11 +14,14 @@ type LifeService struct {
 func New(height, width int) (*LifeService, error) {
 	rand.NewSource(time.Now().UTC().UnixNano())
 
-	currentWorld := life.NewWorld(height, width)
+	currentWorld, err := life.NewWorld(height, width)
+	if err != nil {
+		return nil, err
+	}
 	// для упрощения примера хаотично заполним
-	currentWorld.RandInit(40)
+	currentWorld.Seed()
 
-	newWorld := life.NewWorld(height, width)
+	newWorld, err := life.NewWorld(height, width)
 	if err != nil {
 		return nil, err
 	}

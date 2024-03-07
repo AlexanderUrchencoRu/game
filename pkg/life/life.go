@@ -165,38 +165,18 @@ func NextState(oldWorld, newWorld *World) {
 	}
 }
 
-func NewWorld(height, width int) *World {
-	// создаём тип World с количеством слайсов hight (количество строк)
+func NewWorld(height, width int) (*World, error) {
+	if height <= 0 || width <= 0 {
+		return nil, fmt.Errorf("некорректные размеры сетки: высота и ширина должны быть положительными числами")
+	}
+
 	cells := make([][]bool, height)
 	for i := range cells {
-		cells[i] = make([]bool, width) // создаём новый слайс в каждой строке
+		cells[i] = make([]bool, width)
 	}
 	return &World{
 		Height: height,
 		Width:  width,
 		Cells:  cells,
-	}
+	}, nil
 }
-
-/* Start
-func GoLife(height int, width int) {
-	// объект для хранения текущего состояния сетки
-	currentWorld := NewWorld(height, width)
-	// объект для хранения следующего состояния сетки
-	nextWorld := NewWorld(height, width)
-	// установим начальное состояние
-	currentWorld.Seed()
-	for { // цикл для вывода каждого состояния
-		// выведем текущее состояние на экран
-		fmt.Println(currentWorld)
-		// рассчитываем следующее состояние
-		NextState(currentWorld, nextWorld)
-		// изменяем текущее состояние
-		currentWorld = nextWorld
-		// делаем паузу
-		time.Sleep(100 * time.Millisecond)
-		// специальная последовательность для очистки экрана после каждого шага
-		fmt.Print("\033[H\033[2J")
-	}
-}
-*/

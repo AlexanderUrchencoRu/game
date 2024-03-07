@@ -1,9 +1,9 @@
-package life
+package main
 
 import (
 	"context"
-	"os"
 	"game/internal/application"
+	"os"
 )
 
 func main() {
